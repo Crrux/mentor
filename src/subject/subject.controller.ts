@@ -12,6 +12,11 @@ export class SubjectController {
     return this.subjectService.FindAll();
   }
 
+  @Get('favorite')
+  findFavorite(): string {
+    return this.subjectService.findFavorite();
+  }
+
   @Get(':id')
   findOneById(@Param('id') id: string): InterfaceSubject {
     return this.subjectService.FindOneById(+id);
