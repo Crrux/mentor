@@ -6,7 +6,7 @@ import { ConfigOptions } from './interface/config-options.interface';
 @Global()
 @Module({})
 export class ConfigModule {
-  static register(options: ConfigOptions): DynamicModule {
+  static forRoot(options: ConfigOptions): DynamicModule {
     return {
       module: ConfigModule,
       providers: [

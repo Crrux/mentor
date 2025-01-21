@@ -10,7 +10,7 @@ import { EnvConfig } from './interface/envconfig.interface';
 export class ConfigService {
   private envConfig: EnvConfig;
   constructor(@Inject(CONFIG_OPTIONS) options: ConfigOptions) {
-    const fileName = '.env';
+    const fileName = `${process.env.NODE_ENV || ''}.env`;
     const filePath = path.resolve(__dirname, '../..', options.folder, fileName);
     console.log(filePath);
     console.log((this.envConfig = dotenv.parse(fs.readFileSync(filePath))));

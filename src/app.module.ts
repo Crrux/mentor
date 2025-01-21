@@ -11,7 +11,7 @@ import { SubjectModule } from './subject/subject.module';
     SubjectModule,
     LevelModule,
     BddModule,
-    ConfigModule.register({
+    ConfigModule.forRoot({
       folder: './config',
     }),
   ],
