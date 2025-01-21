@@ -38,7 +38,6 @@ export class SubjectService {
   }
 
   findFavorite(): string {
-    console.log(this.configService);
     return this.configService.get('FAVORITE_SUBJECT');
   }
 }
