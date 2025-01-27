@@ -17,10 +17,10 @@ export class ConfigService {
       options.folder,
       fileName,
     );
-    console.log(filePath);
     this.envConfig = dotenv.parse(fs.readFileSync(filePath));
   }
+
   get(key: string): string {
-    return process.env[key] || this.envConfig[key];
+    return this.envConfig[key];
   }
 }

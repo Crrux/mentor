@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ConfigService } from 'src/config/config.service';
 import { LevelSubjectInterface } from 'src/level/level';
 import { Repository } from 'typeorm';
-import { ConfigService } from '../config/config.service';
 import { SubjectEntity } from './entities/subject.entity';
 import { InterfacePostSubject } from './subject';
 
@@ -13,18 +13,21 @@ export class SubjectService {
     private subjectRepository: Repository<SubjectEntity>,
     private configService: ConfigService,
   ) {}
-  FindAll(): Promise<SubjectEntity[]> {
+
+  findAll(): Promise<SubjectEntity[]> {
     return this.subjectRepository.find();
   }
 
-  FindOneById(id: number): Promise<SubjectEntity> {
+  findOneById(id: number): Promise<SubjectEntity> {
     return this.subjectRepository.findOneBy({ id });
   }
 
-  async CreateNewSubject({
+  async createNewSubject({
     name,
   }: InterfacePostSubject): Promise<SubjectEntity> {
-    const newSubject = await this.subjectRepository.save({ name });
+    const newSubject = await this.subjectRepository.save({
+      name,
+    });
     return newSubject;
   }
 

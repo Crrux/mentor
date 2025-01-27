@@ -7,10 +7,9 @@ import { SubjectService } from './subject.service';
 @Controller('subject')
 export class SubjectController {
   constructor(private readonly subjectService: SubjectService) {}
-
   @Get()
   findAll(): Promise<SubjectEntity[]> {
-    return this.subjectService.FindAll();
+    return this.subjectService.findAll();
   }
 
   @Get('favorite')
@@ -20,7 +19,7 @@ export class SubjectController {
 
   @Get(':id')
   findOneById(@Param('id') id: string): Promise<SubjectEntity> {
-    return this.subjectService.FindOneById(+id);
+    return this.subjectService.findOneById(+id);
   }
 
   @Get(':name/level')
@@ -32,6 +31,6 @@ export class SubjectController {
 
   @Post()
   addSubject(@Body() subject: InterfacePostSubject): Promise<SubjectEntity> {
-    return this.subjectService.CreateNewSubject(subject);
+    return this.subjectService.createNewSubject(subject);
   }
 }

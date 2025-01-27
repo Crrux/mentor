@@ -24,8 +24,8 @@
     "migration:generate": "sh generate-migration.sh",
     "migration:run": "sh run-migration.sh",
     "migration:revert": "sh revert-migration.sh",
-    "migration:fake": "npm run build && npm run typeorm -- -d ./dist/ormconfig.js migration:run --fake",
-    "migration:fake-revert": "npm run build && npm run typeorm -- -d ./dist/ormconfig.js migration:revert --fake"
+    "migration:fake": "npm run build && npm run typeorm -- -d ./dist/src/ormconfig.js migration:run --fake",
+    "migration:fake-revert": "npm run build && npm run typeorm -- -d ./dist/src/ormconfig.js migration:revert --fake"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
