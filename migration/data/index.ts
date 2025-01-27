@@ -1,4 +1,4 @@
-var initSubject = [
+export const initSubject = [
   { name: 'Mathématiques', levelId: 3 },
   { name: 'Francais', levelId: 2 },
   { name: 'SVT', levelId: 3 },
@@ -13,10 +13,13 @@ var initSubject = [
   { name: 'Phylosophie', levelId: 4 },
 ];
 
-var initLevel = [
+export const initLevel = [
   { name: 'Elementaire' },
   { name: 'Maternelle' },
   { name: 'College' },
   { name: 'Lycee' },
   { name: 'Universite' },
 ];
+
+export const formatStringToSql = (str: string | undefined | null): string =>
+  str ? str.replace(/'/g, "''") : 'NULL';
