@@ -11,7 +11,7 @@ const options: DataSourceOptions = {
   password: 'root',
   database: 'mentor',
   entities: [SubjectEntity, LevelEntity],
-  migrations: ['./dist/migration/*.js'],
+  migrations: ['./dist/migration/*{.ts,.js}'],
 };
 
 export const typeOrmModuleOptions: TypeOrmModuleOptions = {
