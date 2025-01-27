@@ -16,15 +16,13 @@ export class SubjectService {
   ) {}
 
   async findAll(): Promise<SubjectEntity[]> {
-    const subjectCache =
-      await this.cacheManager.get<SubjectEntity[]>('findAll');
-    if (!subjectCache) {
-      const subjects = this.subjectRepository.find();
-      await this.cacheManager.set('findAll', subjects, 0);
-      return subjects;
-    }
+    let subjects = await this.cacheManager.get<SubjectEntity[]>('findAll');
 
-    return subjectCache;
+    if (!subjects || subjects.length === 0) {
+      subjects = await this.subjectRepository.find();
+      await this.cacheManager.set('findAll', subjects, 0); // Cache for 1 hour
+    }
+    return subjects;
   }
 
   findOneById(id: number): Promise<SubjectEntity> {
