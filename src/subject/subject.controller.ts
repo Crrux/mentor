@@ -21,13 +21,6 @@ export class SubjectController {
     return this.subjectService.findOneById(+id);
   }
 
-  // @Get(':name/level')
-  // findLevelAndSubject(
-  //   @Param('name') name: string,
-  // ): Promise<LevelSubjectInterface> {
-  //   return this.subjectService.levelAndSubjectFromName(name);
-  // }
-
   @Post()
   addSubject(@Body() subject: InterfacePostSubject): Promise<SubjectEntity> {
     return this.subjectService.createNewSubject(subject);

@@ -41,20 +41,6 @@ export class SubjectService {
     return newSubject;
   }
 
-  // async levelAndSubjectFromName(name: string): Promise<LevelSubjectInterface> {
-  //   const subject = await this.subjectRepository.findOneBy({ name });
-  //   return {
-  //     subject: {
-  //       id: subject.id,
-  //       name: subject.name,
-  //     },
-  //     level: {
-  //       id: subject.level.id,
-  //       name: subject.level.name,
-  //     },
-  //   };
-  // }
-
   findFavorite(): string {
     return 'Maths';
   }

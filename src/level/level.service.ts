@@ -17,20 +17,4 @@ export class LevelService {
   findOneByName(name: string): Promise<LevelEntity> {
     return this.levelRepository.findOneBy({ name });
   }
-
-  // async findLevelAndSubjectByName(
-  //   name: string,
-  // ): Promise<LevelSubjectInterface> {
-  //   const level = await this.levelRepository.findOneBy({ name });
-  //   return {
-  //     subject: {
-  //       id: level.subject.id,
-  //       name: level.subject.name,
-  //     },
-  //     level: {
-  //       id: level.id,
-  //       name: level.name,
-  //     },
-  //   };
-  // }
 }
