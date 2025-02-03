@@ -17,4 +17,8 @@ export class LevelService {
   findOneByName(name: string): Promise<LevelEntity> {
     return this.levelRepository.findOneBy({ name });
   }
+
+  async createNewLevel(level: { name: string }): Promise<LevelEntity> {
+    return this.levelRepository.save({ name: level.name });
+  }
 }
