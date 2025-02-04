@@ -21,7 +21,13 @@ export class AnnounceService {
     subject: { name: subjectName },
   }: CreateAnnounceDto): Promise<AnnounceEntity> {
     const level = await this.levelService.findOneByName(levelName);
+    if (!level) {
+      throw new HttpException(`level not found`, HttpStatus.NOT_FOUND);
+    }
     const subject = await this.subjectService.findOneByName(subjectName);
+    if (!subject) {
+      throw new HttpException(`subject not found`, HttpStatus.NOT_FOUND);
+    }
     const announce = await this.announceRepository.save({
       price,
       level,
