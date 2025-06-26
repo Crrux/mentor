@@ -1,4 +1,3 @@
-import { AnnounceEntity } from 'src/announce/entities/announce.entity';
 import {
   Column,
   Entity,
@@ -6,6 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { AnnounceEntity } from '../../announce/entities/announce.entity';
 
 @Entity()
 export class LevelEntity {

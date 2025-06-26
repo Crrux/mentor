@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { LevelService } from 'src/level/level.service';
-import { SubjectService } from 'src/subject/subject.service';
 import { Repository } from 'typeorm';
+import { LevelService } from '../level/level.service';
+import { SubjectService } from '../subject/subject.service';
 import { AnnounceEntity } from './entities/announce.entity';
 import { CreateAnnounceDto } from './interface/create-announce.dto';
 

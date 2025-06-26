@@ -1,5 +1,3 @@
-import { LevelEntity } from 'src/level/entities/level.entity';
-import { SubjectEntity } from 'src/subject/entities/subject.entity';
 import {
   Column,
   Entity,
@@ -7,6 +5,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { LevelEntity } from '../../level/entities/level.entity';
+import { SubjectEntity } from '../../subject/entities/subject.entity';
 
 @Entity()
 export class AnnounceEntity {
