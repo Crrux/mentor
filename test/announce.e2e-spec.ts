@@ -90,23 +90,8 @@ describe('Announce E2E Tests', () => {
           },
         });
     });
-  });
 
-  describe('create announce', () => {
-    const spyLevel = jest.spyOn(levelService, 'findOneByName');
-    const spySubject = jest.spyOn(subjectService, 'findOneByName');
-    const spyRepository = jest.spyOn(repository, 'save');
-    const announceToCreate = {
-      price: 100,
-      level: {
-        name: 'test-level',
-      },
-      subject: {
-        name: 'test-subject',
-      },
-    };
-
-    it('should not create a new announce with bad request', async () => {
+    it('should not create a new announce with bad request price too high', async () => {
       await request(app.getHttpServer())
         .post('/announce')
         .send({ ...announceToCreate, price: 250 })
@@ -116,6 +101,71 @@ describe('Announce E2E Tests', () => {
           error: 'Bad Request',
           statusCode: 400,
         });
+    });
+
+    it('should not create a new announce with bad request negative price', async () => {
+      await request(app.getHttpServer())
+        .post('/announce')
+        .send({ ...announceToCreate, price: -1 })
+        .expect(400)
+        .expect({
+          message: ['price must not be less than 0'],
+          error: 'Bad Request',
+          statusCode: 400,
+        });
+    });
+  });
+
+  describe('search announce', () => {
+    const spyLevel = jest.spyOn(levelService, 'findOneByName');
+    const spySubject = jest.spyOn(subjectService, 'findOneByName');
+    const spyRepository = jest.spyOn(repository, 'findOneBy');
+
+    it('should create a new announce', async () => {
+      spyLevel.mockResolvedValue({
+        id: 1,
+        name: 'test-level',
+      });
+
+      spySubject.mockResolvedValue({
+        id: 1,
+        name: 'test-subject',
+      });
+
+      spyRepository.mockResolvedValue({
+        id: 1,
+        price: 100,
+        level: {
+          id: 1,
+          name: 'test-level',
+        },
+        subject: {
+          id: 1,
+          name: 'test-subject',
+        },
+      });
+
+      await request(app.getHttpServer())
+        .get('/announce/search')
+        .query({
+          levelName: 'test-level',
+          subjectName: 'test-subject',
+        })
+        .expect(200)
+        .expect({
+          id: 1,
+          price: 100,
+          level: {
+            id: 1,
+            name: 'test-level',
+          },
+          subject: {
+            id: 1,
+            name: 'test-subject',
+          },
+        });
+      expect(spyLevel).toHaveBeenCalledWith('test-level');
+      expect(spySubject).toHaveBeenCalledWith('test-subject');
     });
   });
 });
